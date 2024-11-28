@@ -12,6 +12,7 @@ type CmdFlags struct { //all the commands
 	Edit   string
 	Toggle int
 	List   bool
+	LeftQuestsList bool
 }
 
 func NewCmdFlags() *CmdFlags { //returns pointer to a cmdFlags struct with the values
@@ -24,6 +25,7 @@ func NewCmdFlags() *CmdFlags { //returns pointer to a cmdFlags struct with the v
 	flag.StringVar(&cf.Edit, "edit", "", "Edit a quest by index & other infos like, 'index : title : urgency : dueDate'")
 	flag.IntVar(&cf.Del, "del", -1, "Type the quest index to delete")
 	flag.IntVar(&cf.Toggle, "toggle", -1, "Type the quest index to toggle 'completed'")
+	flag.BoolVar(&cf.LeftQuestsList, "leftQuests", false, "List all the remaining quests")
 	flag.BoolVar(&cf.List, "list", false, "List all quests in a pretty table")
 
 	//extra info for -help
@@ -49,6 +51,8 @@ func (cf *CmdFlags) Execute(todos *Todos) {
 	switch { //to see which flag was called in the cli
 	case cf.List:
 		todos.print() //print our table
+	case cf.LeftQuestsList:
+		todos.leftQuestPrint() 
 	case cf.Add != "": // -add "henlo"
 		todos.add(cf.Add)
 	case cf.Edit != "": // // -edit "2:-:3:-"

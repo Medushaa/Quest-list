@@ -14,25 +14,23 @@ import (
 	"github.com/liamg/tml"
 )
 
-//a single task struct
+// a single task struct
 type Todo struct {
-	Title string
-	Completed bool
-	Urgency int
-	DueDate string
+	Title       string
+	Completed   bool
+	Urgency     int
+	DueDate     string
 	CompletedAt *time.Time
 }
 
-//'type' create abstruction for the []Todo type. So, we can later declare 
-//variable of type Todos. (in main.go)
-type Todos []Todo //slice/list to hold all the "Todo"s 
+// 'type' create abstruction for the []Todo type. So, we can later declare
+// variable of type Todos. (in main.go)
+type Todos []Todo //slice/list to hold all the "Todo"s
 
-
-
-//method to add new todo to the slice Todos
-func (todos *Todos) add(details string) { 
+// method to add new todo to the slice Todos
+func (todos *Todos) add(details string) {
 	parts := strings.SplitN(details, ":", 3)
-	
+
 	if len(parts) != 3 { // Ensure the format is correct
 		fmt.Println("Error: Invalid format for add. Use 'title : urgency : due date'")
 		os.Exit(1)
@@ -60,19 +58,19 @@ func (todos *Todos) add(details string) {
 	fmt.Println("New quest sucessfully added!👍")
 }
 
-//delete a todo at that index
+// delete a todo at that index
 func (todos *Todos) delete(index int) error {
 	t := *todos //slice data
 	if err := t.validateIndex(index); err != nil {
 		return err
 	}
 
-	*todos = append(t[:index], t[index+1:]...) 
+	*todos = append(t[:index], t[index+1:]...)
 	fmt.Printf("Quest at index %v successfully deleted.", index)
 	return nil
 }
 
-//if user inputs a invalid index (error handling)
+// if user inputs a invalid index (error handling)
 func (todos *Todos) validateIndex(index int) error {
 	if index < 0 || index >= len(*todos) {
 		err := errors.New("invalid index")
@@ -82,8 +80,7 @@ func (todos *Todos) validateIndex(index int) error {
 	return nil
 }
 
-
-//toggle task completion T/F
+// toggle task completion T/F
 func (todos *Todos) toggle(index int) error {
 	t := *todos
 	if err := t.validateIndex(index); err != nil {
@@ -104,8 +101,7 @@ func (todos *Todos) toggle(index int) error {
 	return nil
 }
 
-
-//change title, urgency and duedate at a task index
+// change title, urgency and duedate at a task index
 func (todos *Todos) edit(details string) error {
 	//split input into parts: index, title, urgency, and due date
 	parts := strings.SplitN(details, ":", 4)
@@ -144,9 +140,7 @@ func (todos *Todos) edit(details string) error {
 	return nil
 }
 
-
-
-//print the pretty table in the cli
+// print the pretty table in the cli
 func (todos *Todos) print() {
 	tabl := table.New(os.Stdout)
 	tabl.SetRowLines(false)
@@ -155,7 +149,7 @@ func (todos *Todos) print() {
 
 	tabl.SetHeaders("#", "Quest Title", "Completed", "Urgency", "Due Date", "Completed At")
 
-	timeFormat := "Mon, 02 Jan 2006 03:04 PM"
+	timeFormat := "Mon, 02 Jan, 03:04 PM"
 
 	getUrgencyEmoji := func(urgency int) string {
 		switch urgency {
@@ -183,14 +177,20 @@ func (todos *Todos) print() {
 		urgency := getUrgencyEmoji(t.Urgency)
 
 		switch t.Urgency {
-			case 1: title = tml.Sprintf("<green>" + t.Title + "</green>")
-			case 2: title = tml.Sprintf("<yellow>" + t.Title + "</yellow>")
-			case 3: title = tml.Sprintf("<magenta>" + t.Title + "</magenta>")
-			case 4: title = tml.Sprintf("<red>" + t.Title + "</red>")
-			case 5: title = tml.Sprintf("<red>" + t.Title + "</red>")
-			default: title = tml.Sprintf("<white>" + t.Title + "</white>")
-			}
-	
+		case 1:
+			title = tml.Sprintf("<green>" + t.Title + "</green>")
+		case 2:
+			title = tml.Sprintf("<yellow>" + t.Title + "</yellow>")
+		case 3:
+			title = tml.Sprintf("<magenta>" + t.Title + "</magenta>")
+		case 4:
+			title = tml.Sprintf("<red>" + t.Title + "</red>")
+		case 5:
+			title = tml.Sprintf("<red>" + t.Title + "</red>")
+		default:
+			title = tml.Sprintf("<white>" + t.Title + "</white>")
+		}
+
 		if t.Completed {
 			completed = " ✅ "
 			title = tml.Sprintf("<black>" + t.Title + "</black>")
@@ -200,7 +200,6 @@ func (todos *Todos) print() {
 			urgency = ""
 		}
 
-
 		tabl.AddRow(
 			strconv.Itoa(index),
 			title,
@@ -208,6 +207,70 @@ func (todos *Todos) print() {
 			urgency, //use color here next
 			t.DueDate,
 			completedAt,
+		)
+	}
+
+	tabl.Render()
+}
+
+// print the pretty table in the cli
+func (todos *Todos) leftQuestPrint() {
+	tabl := table.New(os.Stdout)
+	tabl.SetRowLines(false)
+	tabl.SetHeaderStyle(table.StyleBold)
+	tabl.SetLineStyle(table.StyleBrightCyan)
+
+	tabl.SetHeaders("#", "Quest Title", "Completed", "Urgency", "Due Date")
+
+	getUrgencyEmoji := func(urgency int) string {
+		switch urgency {
+		case 0:
+			return "⚪"
+		case 1:
+			return "🟢"
+		case 2:
+			return "🟡🟡"
+		case 3:
+			return "🟠🟠🟠"
+		case 4:
+			return "🔴🔴🔴🔴"
+		case 5:
+			return "📢❗⏰🚨🆘"
+		default:
+			return "❓" // Unknown urgency
+		}
+	}
+
+	for index, t := range *todos {
+		if t.Completed {
+			continue
+		}
+
+		completed := " ❌ "
+		title := ""
+		urgency := getUrgencyEmoji(t.Urgency)
+
+		switch t.Urgency {
+		case 1:
+			title = tml.Sprintf("<green>" + t.Title + "</green>")
+		case 2:
+			title = tml.Sprintf("<yellow>" + t.Title + "</yellow>")
+		case 3:
+			title = tml.Sprintf("<magenta>" + t.Title + "</magenta>")
+		case 4:
+			title = tml.Sprintf("<red>" + t.Title + "</red>")
+		case 5:
+			title = tml.Sprintf("<red>" + t.Title + "</red>")
+		default:
+			title = tml.Sprintf("<white>" + t.Title + "</white>")
+		}
+
+		tabl.AddRow(
+			strconv.Itoa(index),
+			title,
+			completed,
+			urgency, //use color here next
+			t.DueDate,
 		)
 	}
 
