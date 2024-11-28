@@ -55,12 +55,20 @@ I added a lot of comments because I just started leaning Go and writing notes he
     ```go
     storage := NewStorage[Todos]("C:/YourDirectory/todo-cli-tool/quests.json")
     ```
-2. Build the executable in the project directory (for Windows):
+### For Windows:
+3. Build the executable in the project directory (for Windows):
    ```bash
    go build -o quest.exe
    ```
-3. Add the project directory e.g. `C:/YourDirectory/todo-cli-tool` to your system's environment path variables. 
+4. Add the project directory e.g. `C:/YourDirectory/todo-cli-tool` to your system's environment path variables. 
 (`Search > Edit System Environment Variables > Environment Variables > System variables > Path > New`)
+
+### For Mac:
+3. Build the binary in project directory (E.g. `/Users/ungabunga/todo-cli-tool`): 
+    ```bash
+    go build -o quest
+    ```
+4. .... (I dunno. Look it up yourself on the internet)
 
 Now, you can use the `quest` command globally in your terminal.
 
