@@ -18,4 +18,8 @@
 # vendor/
 
 # Go workspace file
+<<<<<<< HEAD
 go.work
+=======
+go.work
+>>>>>>> dc133a2a1f3c4dd9059ed00449c11fd2cc4586b7

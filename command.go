@@ -22,7 +22,7 @@ func NewCmdFlags() *CmdFlags { //returns pointer to a cmdFlags struct with the v
 	//"add" is the cli flag, "" is the default value and next is the flag description
 	//can see them with -help
 	flag.StringVar(&cf.Add, "add", "", "Add a new quest with \"title:urgency:due date\" (urgency value 0 to 5)")
-	flag.StringVar(&cf.Edit, "edit", "", "Edit a quest by index & other infos like, 'index:title:urgency:dueDate'")
+	flag.StringVar(&cf.Edit, "edit", "", "Edit a quest by index & other infos like, \"index:title:urgency:dueDate\"")
 	flag.IntVar(&cf.Del, "del", -1, "Type the quest index to delete")
 	flag.IntVar(&cf.Toggle, "toggle", -1, "Type the quest index to toggle 'completed'")
 	flag.BoolVar(&cf.LeftQuestsList, "leftQuests", false, "List all the remaining quests")
