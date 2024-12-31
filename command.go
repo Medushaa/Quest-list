@@ -21,8 +21,8 @@ func NewCmdFlags() *CmdFlags { //returns pointer to a cmdFlags struct with the v
 	//define the flags:
 	//"add" is the cli flag, "" is the default value and next is the flag description
 	//can see them with -help
-	flag.StringVar(&cf.Add, "add", "", "Add a new quest with 'title : urgency : due date' (urgency value 0 to 5)")
-	flag.StringVar(&cf.Edit, "edit", "", "Edit a quest by index & other infos like, 'index : title : urgency : dueDate'")
+	flag.StringVar(&cf.Add, "add", "", "Add a new quest with \"title:urgency:due date\" (urgency value 0 to 5)")
+	flag.StringVar(&cf.Edit, "edit", "", "Edit a quest by index & other infos like, 'index:title:urgency:dueDate'")
 	flag.IntVar(&cf.Del, "del", -1, "Type the quest index to delete")
 	flag.IntVar(&cf.Toggle, "toggle", -1, "Type the quest index to toggle 'completed'")
 	flag.BoolVar(&cf.LeftQuestsList, "leftQuests", false, "List all the remaining quests")
@@ -32,11 +32,11 @@ func NewCmdFlags() *CmdFlags { //returns pointer to a cmdFlags struct with the v
 	flag.Usage = func() {
 		flag.PrintDefaults()
 		fmt.Println(`
-	Examples:
-	  quest -add "Eat chiken : 3 : 01 Dec 2024 5PM"
-	  quest -edit "2:-:4:-" (changes urgency at idx 2 to 4)
-	  quest -list
-	  quest -del 1
+Examples:
+	quest -add "Eat chiken : 3 : 01 Dec 2024 5PM"
+	quest -edit "2:-:4:-" (changes urgency at idx 2 to 4)
+	quest -list
+	quest -del 1
 		`)
 	}
 

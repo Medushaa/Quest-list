@@ -1,37 +1,23 @@
 [
 {
-"Title": "Pet kat",
-"Completed": true,
-"Urgency": 2,
-"DueDate": "30 Nov 2024 5PM",
-"CompletedAt": "2024-11-28T13:38:18.1213519+06:00"
-},
-{
-"Title": "Fix chap progress buttons",
+"Title": "make game",
 "Completed": false,
 "Urgency": 1,
-"DueDate": "28 Nov 2024 8PM",
+"DueDate": "30 Jan 2025 5PM",
 "CompletedAt": null
 },
 {
-"Title": "buy wedding gift",
-"Completed": false,
-"Urgency": 3,
-"DueDate": "30 Nov 2024 12PM",
-"CompletedAt": null
-},
-{
-"Title": "Ethereum PoS notes",
+"Title": "Eth world state update",
 "Completed": false,
 "Urgency": 5,
-"DueDate": "29 Nov 2024 11AM",
+"DueDate": "1 Jan 2025 8PM",
 "CompletedAt": null
 },
 {
-"Title": "Check S2 txt",
+"Title": "LangChain vid",
 "Completed": false,
-"Urgency": 4,
-"DueDate": "28 Nov 2024 6PM",
+"Urgency": 3,
+"DueDate": "3 Jan 2025 8PM",
 "CompletedAt": null
 }
 ]

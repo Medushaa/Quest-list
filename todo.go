@@ -121,7 +121,7 @@ func (todos *Todos) edit(details string) error {
 	//get the todo to edit. address of the todo at index in the slice (pointer)
 	t := &(*todos)[index]
 
-	// Update fields if they are not placeholders
+	//Update fields if they are not placeholders
 	if parts[1] != "-" { // Title
 		t.Title = strings.TrimSpace(parts[1])
 	}
