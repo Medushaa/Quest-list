@@ -45,7 +45,7 @@ I added a lot of comments because I just started leaning Go and writing notes he
   quest -leftQuests
   ```
 
-- Open the pomodoro app:
+- Open the pomodoro app (used the cross platform GUI tool, Fyne):
   ```bash
   quest -pomodoro
   ```
