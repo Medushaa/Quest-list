@@ -19,5 +19,33 @@
 "Urgency": 3,
 "DueDate": "3 Jan 2025 8PM",
 "CompletedAt": null
+},
+{
+"Title": "Add pomodoro with Fyne",
+"Completed": false,
+"Urgency": 2,
+"DueDate": "7 Jan 2025 5PM",
+"CompletedAt": null
+},
+{
+"Title": "Eth block structure table",
+"Completed": true,
+"Urgency": 4,
+"DueDate": "1 Jan 2025 8PM",
+"CompletedAt": "2025-01-10T14:13:40.0334395+06:00"
+},
+{
+"Title": "Put attests nd trie diag",
+"Completed": true,
+"Urgency": 4,
+"DueDate": "1 Jan 2025 8PM",
+"CompletedAt": "2025-01-03T21:43:49.1344525+06:00"
+},
+{
+"Title": "Eth receipts struct",
+"Completed": true,
+"Urgency": 4,
+"DueDate": "1 Jan 2025 8PM",
+"CompletedAt": "2025-01-02T14:57:00.1415844+06:00"
 }
 ]

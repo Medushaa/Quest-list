@@ -3,18 +3,19 @@ A command-line interface (CLI) tool to manage your tasks or "quests".
 
 I added a lot of comments because I just started leaning Go and writing notes helps me remember which line is doing what and why.
 
-![ss-v1](quest.png)
+![ss-v1](images/quest.png)
 
 ## Commands and Flags:
 
-| **Flag**           | **Description**                                                                                 |
-|--------------------|-----------------------------------------------------------------------------------------------|
+| **Flag**           | **Description**                                                                              |
+|--------------------|----------------------------------------------------------------------------------------------|
 | `-add` string      | Add a new quest with `'title : urgency : due date'` (urgency value 0 to 5).                  |
 | `-del` int         | Type the quest index to delete (default `-1`).                                               |
 | `-edit` string     | Edit a quest by index and other info like `'index : title : urgency : dueDate'`.             |
 | `-leftQuests`      | List all remaining (incomplete) quests.                                                      |
 | `-list`            | List all quests in a pretty table.                                                           |
 | `-toggle` int      | Type the quest index to toggle its 'completed' status (default `-1`).                        |
+| `-pomodoro`        | Starts the pomodoro app to concentrate                                                       |
 
 
 

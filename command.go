@@ -13,6 +13,7 @@ type CmdFlags struct { //all the commands
 	Toggle int
 	List   bool
 	LeftQuestsList bool
+	Pomo bool
 }
 
 func NewCmdFlags() *CmdFlags { //returns pointer to a cmdFlags struct with the values
@@ -27,6 +28,7 @@ func NewCmdFlags() *CmdFlags { //returns pointer to a cmdFlags struct with the v
 	flag.IntVar(&cf.Toggle, "toggle", -1, "Type the quest index to toggle 'completed'")
 	flag.BoolVar(&cf.LeftQuestsList, "leftQuests", false, "List all the remaining quests")
 	flag.BoolVar(&cf.List, "list", false, "List all quests in a pretty table")
+	flag.BoolVar(&cf.Pomo, "pomodoro", false, "Start the pomodoro app to concentrate")
 
 	//extra info for -help
 	flag.Usage = func() {
@@ -37,6 +39,7 @@ Examples:
 	quest -edit "2:-:4:-" (changes urgency at idx 2 to 4)
 	quest -list
 	quest -del 1
+	quest -pomodoro
 		`)
 	}
 
@@ -66,7 +69,9 @@ func (cf *CmdFlags) Execute(todos *Todos) {
 
 	case cf.Del != -1: // -del 2 (-1 is invalid idx)
 		todos.delete(cf.Del)
-
+	
+	case cf.Pomo:
+		startPomo() //its in pomodoro.go
 	default:
 		fmt.Println("Invalid command")
 	}
