@@ -45,6 +45,12 @@ I added a lot of comments because I just started leaning Go and writing notes he
   quest -leftQuests
   ```
 
+- Open the pomodoro app:
+  ```bash
+  quest -pomodoro
+  ```
+  ![pomo](images/pomodoro.png)
+
 
 ## Installation:
 
